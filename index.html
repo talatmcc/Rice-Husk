@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiceHusk</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand img {
+            transition: transform 0.3s ease;
+        }
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+        h2 {
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #6c757d;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        .card img {
+            border-bottom: 3px solid #06131d;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .accordion-button {
+            background-color: #007bff;
+            color: white;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: #0056b3;
+        }
+        .accordion-button:focus {
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="resources/icon.png" alt="Icon" style="max-height: 40px; width: auto;" class="me-2"> 
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#project">Project Description</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#machine">Machine Description</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#references">Papers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contributors">Contributors</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Description Section -->
+    <section id="project" class="container my-5">
+        <h2>From Waste to Wealth: A Sustainable Solution for Energy Using Rice Husk</h2>
+        <p>China produces vast amounts of rice every year. In 2024, the total rice production in China was 207.5 million metric tons, of which 25% is left as rice husk—a byproduct that is often wasted and contributes to environmental pollution. To tackle this problem, we propose a fully eco-friendly, zero-waste management process that uses rice husk to generate electricity, purify water, and produce activated carbon, a valuable material for the battery industry. Additionally, this process yields clean nitrogen gas and rice husk ash bricks, which help reduce room temperature and noise levels.</p>
+        <p>We also propose a modified version of a downdraft gasifier, specially designed to extract valuable carbon materials. By implementing this comprehensive process, we can generate energy, reduce carbon emissions in the environment, and gain economic benefits.</p>
+        <video width="720" height="480" controls style="border: 3px solid #06131d; display: block; margin: auto;">
+            <source src="resources/video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </section>
+
+    <!-- Machine Description Section -->
+    <section id="machine" class="container my-5">
+        <h2>Machine Description</h2>
+        <div class="row" id="machine-container"></div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let machines = [
+                { title: "Modified Downdraft Gasifier", description: "This is the description for Machine." },
+                { title: "Carbon Activation Plant", description: "This is the description for Machine." },
+                { title: "Water Purification Plant", description: "This is the description for Machine." },
+                { title: "Cyclone Separator", description: "This is the description for Machine." },
+                { title: "Gas Turbine", description: "This is the description for Machine." },
+                { title: "Drying Chamber", description: "This is the description for Machine." },
+                { title: "Carbon Storage", description: "This is the description for Machine." },
+                { title: "Nitrogen Storage", description: "This is the description for Machine." },
+                { title: "Electricity Storage", description: "This is the description for Machine." }
+            ];
+
+            let machineContainer = document.getElementById("machine-container");
+
+            machines.forEach((machine, index) => {
+                let machineHTML = `
+                    <div class="col-md-4">
+                        <div class="card m-2 p-2" style="height: 100%;">
+                            <img src="resources/machines/machine${index + 1}.png" class="card-img-top" alt="${machine.title}" style="width: 100%; height: 400px;">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">${machine.title}</h5>
+                                <button class="btn btn-primary mt-auto" onclick="toggleDescription(${index})">See Details</button>
+                                <p id="desc${index}" class="mt-2" style="display:none;">${machine.description}</p>
+                            </div>
+                        </div>
+                    </div>`;
+                machineContainer.innerHTML += machineHTML;
+            });
+        });
+
+        function toggleDescription(id) {
+            let desc = document.getElementById("desc" + id);
+            desc.style.display = desc.style.display === "none" ? "block" : "none";
+        }
+    </script>
+
+    <!-- References Section -->
+<section id="references" class="container my-5">
+    <h2>Documents</h2>
+    <div class="accordion" id="referencesAccordion">
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                let papers = [
+                    { title: "Calculations", link: "resources/papers/document1.pdf" },
+                    { title: "Paper-2", link: "resources/papers/document2.pdf" },
+                    // { title: "Paper Title 3", link: "resources/papers/document3.pdf" },
+                    // { title: "Paper Title 4", link: "resources/papers/document4.pdf" },
+                    // { title: "Paper Title 5", link: "resources/papers/document5.pdf" }
+                ];
+
+                let referencesContainer = document.querySelector("#references .accordion");
+                papers.forEach((paper, index) => {
+                    referencesContainer.innerHTML += `
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ref${index}">
+                                    ${paper.title}
+                                </button>
+                            </h2>
+                            <div id="ref${index}" class="accordion-collapse collapse" data-bs-parent="#referencesAccordion">
+                                <div class="accordion-body">
+                                    <a href="${paper.link}" target="_blank">Read ${paper.title}</a>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+            });
+        </script>
+    </div>
+</section>
+
+    <!-- Contributors Section -->
+    <section id="contributors" class="container my-5">
+        <h2>Contributors</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="resources/contributors/contributor1.png" class="card-img-top" alt="Contributor 1" style="width: 100%; height: 500px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">RAOHA BIN MEJBA</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="resources/contributors/contributor2.png" class="card-img-top" alt="Contributor 2" style="width: 100%; height: 500px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">MD TALAT MAHMUD TOMAL</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="resources/contributors/contributor3.png" class="card-img-top" alt="Contributor 3" style="width: 100%; height: 500px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">AYAZ</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="resources/contributors/contributor4.png" class="card-img-top" alt="Contributor 4" style="width: 100%; height: 500px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">JAMIL PIASH</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
